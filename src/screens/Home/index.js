@@ -1,22 +1,16 @@
 import React from 'react';
 
+import { Button, Text, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-import { Button, Text, TouchableOpacity, View } from 'react-native';
+import Row from '../../components/Row';
 
 const Home = () => {
   const navigation = useNavigation();
 
   return (
     <View>
-      <Text>Hi!</Text>
-
-      <TouchableOpacity>
-        <Button
-          title="Go to Search"
-          onPress={() => navigation.navigate('Search')}
-        />
-      </TouchableOpacity>
+      <Row title="Horreur" />
     </View>
   );
 }
