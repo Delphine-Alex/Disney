@@ -3,6 +3,8 @@ import axios from 'axios';
 
 import { Button, FlatList, Text, View } from 'react-native';
 
+import MovieCard from '../MovieCard';
+
 const Row = (props) => {
   const [movies, setMovies] = useState([]);
 
@@ -10,26 +12,50 @@ const Row = (props) => {
   const apiKey = 'fd7bff04ac1e8d64d6c38c9200b46fb8'
 
   useEffect(() => {
-    const getMovies = async () => {
-      try {
-        const result = await axios.get(`${apiUrl}/discover/movie?api_key=${apiKey}&with_genres=27`)
-        setMovies(result.data.results);
-      } catch (error) {
-        console.log(error)
+    if (props.title === "Tendances") {
+      const getMovies = async () => {
+        try {
+          const result = await axios.get(`${apiUrl}/movie/popular?api_key=${apiKey}`)
+          setMovies(result.data.results);
+          console.log('Tendances:', result.data.results)
+        } catch (error) {
+          console.log(error)
+        }
       }
+      getMovies();
+    } else if (props.title === "Action et Aventure") {
+      const getMovies = async () => {
+        try {
+          const result = await axios.get(`${apiUrl}/discover/movie?api_key=${apiKey}&with_genres=28,12`)
+          setMovies(result.data.results);
+          console.log('A&A:', result.data.results)
+        } catch (error) {
+          console.log(error)
+        }
+      }
+      getMovies();
+    } else {
+      const getMovies = async () => {
+        try {
+          const result = await axios.get(`${apiUrl}/discover/movie?api_key=${apiKey}&with_genres=27`)
+          setMovies(result.data.results);
+          console.log('Horreur:', result.data.results)
+        } catch (error) {
+          console.log(error)
+        }
+      }
+      getMovies();
     }
-    getMovies();
   }, []);
 
   return (
     <View>
+      <Text>{props.title}</Text>
       <FlatList
         data={movies}
         keyExtractor={item => item.id}
         renderItem={({ item }) => (
-          // <TouchableOpacity onPress={() => navigation.navigate('Character')}>
-          <Text>{item.title}</Text>
-          // </TouchableOpacity>
+          <MovieCard {...item} />
         )}
       />
     </View>

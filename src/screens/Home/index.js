@@ -10,6 +10,8 @@ const Home = () => {
 
   return (
     <View>
+      <Row title="Tendances" />
+      <Row title="Action et Aventure" />
       <Row title="Horreur" />
     </View>
   );
