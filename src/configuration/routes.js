@@ -4,7 +4,9 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 // import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-import Home from '../screens/Home';
+// import Home from '../screens/Home';
+import HomeStack from '../configuration/homeStack';
+
 import Search from '../screens/Search';
 // import Downloads from '../screens/Downloads';
 import Profiles from '../screens/Profiles';
@@ -19,7 +21,8 @@ const Routes = () => {
           headerShown: false,
         }}
       >
-        <BottomStack.Screen name="Home" component={Home} />
+        {/* <BottomStack.Screen name="Home" component={Home} /> */}
+        <BottomStack.Screen name="HomeStack" component={HomeStack} />
         <BottomStack.Screen name="Search" component={Search} />
         {/* <BottomStack.Screen name="Downloads" component={Downloads} /> */}
         <BottomStack.Screen name="Profiles" component={Profiles} />

@@ -17,7 +17,6 @@ const Row = (props) => {
         try {
           const result = await axios.get(`${apiUrl}/movie/popular?api_key=${apiKey}`)
           setMovies(result.data.results);
-          console.log('Tendances:', result.data.results)
         } catch (error) {
           console.log(error)
         }
@@ -28,7 +27,6 @@ const Row = (props) => {
         try {
           const result = await axios.get(`${apiUrl}/discover/movie?api_key=${apiKey}&with_genres=28,12`)
           setMovies(result.data.results);
-          console.log('A&A:', result.data.results)
         } catch (error) {
           console.log(error)
         }
@@ -39,7 +37,6 @@ const Row = (props) => {
         try {
           const result = await axios.get(`${apiUrl}/discover/movie?api_key=${apiKey}&with_genres=27`)
           setMovies(result.data.results);
-          console.log('Horreur:', result.data.results)
         } catch (error) {
           console.log(error)
         }
