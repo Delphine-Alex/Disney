@@ -1,32 +1,26 @@
 import React from 'react';
 
 import { NavigationContainer } from '@react-navigation/native';
-import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 
-// Create a modal
-// import { createStackNavigator } from '@react-navigation/stack';
+// Create a ModalScreen
+import { createStackNavigator } from '@react-navigation/stack';
 
-import Home from '../screens/Home';
-import Search from '../screens/Search';
-// import Downloads from '../screens/Downloads';
-import Profiles from '../screens/Profiles';
+import BottomNavigator from './bottomNavigator';
+import ModalScreen from '../components/ModalScreen';
+
+import Home from './../screens/Home';
+const RootStack = createStackNavigator();
 
 const Routes = () => {
-  const BottomStack = createMaterialBottomTabNavigator();
-  // const RootStack = createStackNavigator();
 
   return (
     <NavigationContainer>
-      <BottomStack.Navigator
-        screenOptions={{
-          headerShown: false,
-        }}
-      >
-        <BottomStack.Screen name="Home" component={Home} />
-        <BottomStack.Screen name="Search" component={Search} />
-        {/* <BottomStack.Screen name="Downloads" component={Downloads} /> */}
-        <BottomStack.Screen name="Profiles" component={Profiles} />
-      </BottomStack.Navigator>
+      <RootStack.Navigator>
+        <RootStack.Screen name="BottomNavigator" component={BottomNavigator} />
+        <RootStack.Group screenOptions={{ presentation: 'modal' }}>
+          <RootStack.Screen name="ModalScreen" component={ModalScreen} />
+        </RootStack.Group>
+      </RootStack.Navigator>
     </NavigationContainer>
   );
 }
