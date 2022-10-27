@@ -15,11 +15,10 @@ const MovieCard = (item) => {
     <View>
       <View>
         <Text>{item && item.title}</Text>
-        <TouchableOpacity onPress={() => navigation.navigate('ModalScreen')}>
+        <TouchableOpacity onPress={() => navigation.navigate('ModalScreen', { ...item })}>
           <Image
             defaultSource={{ uri: NotFound }}
             source={{ uri: item.backdrop_path ? `https://image.tmdb.org/t/p/original${item.backdrop_path}` : defaultImage }}
-            // onPress={() => navigation.navigate('ModalScreen', { id: item.id })}
             style={styles.pictures}
             alt={item.title}
           />
