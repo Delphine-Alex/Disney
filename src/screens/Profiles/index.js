@@ -1,9 +1,35 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
-const Index = () => {
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+import { FlatList, Text, View } from 'react-native';
+
+import MovieCard from '../../components/MovieCard';
+
+const Profiles = () => {
+  const [movies, setMovies] = useState([]);
+
+  useEffect(async () => {
+    setMovies(JSON.parse(await AsyncStorage.getItem('favorite')));
+  }, []);
+
   return (
-    null
+    <View>
+      {
+        movies ? (
+          <FlatList
+            data={movies}
+            keyExtractor={item => item.id}
+            renderItem={({ item }) => (
+              <MovieCard {...item} />
+            )}
+          />
+        ) : (
+          ""
+        )
+      }
+    </View>
   );
 }
 
-export default Index;
+export default Profiles;

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { Button, Image, StyleSheet, Text, View } from 'react-native';
 
@@ -60,7 +60,6 @@ const ModalScreen = (item) => {
     }
     getData();
   }, []);
-
 
   return (
     <View>
