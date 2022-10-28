@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import { NotFound } from '../../assets/NotFound.png';
@@ -13,17 +13,14 @@ const MovieCard = (item) => {
 
   return (
     <View>
-      <View>
-        <Text>{item && item.title}</Text>
-        <TouchableOpacity onPress={() => navigation.navigate('ModalScreen', { ...item })}>
-          <Image
-            defaultSource={{ uri: NotFound }}
-            source={{ uri: item.backdrop_path ? `https://image.tmdb.org/t/p/original${item.backdrop_path}` : defaultImage }}
-            style={styles.pictures}
-            alt={item.title}
-          />
-        </TouchableOpacity>
-      </View>
+      <TouchableOpacity onPress={() => navigation.navigate('ModalScreen', { ...item })}>
+        <Image
+          defaultSource={{ uri: NotFound }}
+          source={{ uri: item.backdrop_path ? `https://image.tmdb.org/t/p/original${item.backdrop_path}` : defaultImage }}
+          style={styles.pictures}
+          alt={item.title}
+        />
+      </TouchableOpacity>
     </View>
   );
 }

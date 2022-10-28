@@ -4,6 +4,20 @@ import { Dimensions, SafeAreaView } from 'react-native';
 
 import Routes from './src/configuration/routes';
 
+import styled, { createGlobalStyle } from 'styled-components';
+
+// const GlobalStyle = createGlobalStyle`
+
+//  * {
+//   box-sizing: : border-box;
+//   margin: 0;
+//  }
+//  body {
+//   color: red;
+//   background: black;
+//  }
+// `
+
 const App = () => {
 
   return (
@@ -12,6 +26,7 @@ const App = () => {
         width: '100%',
         height: Dimensions.get('window').height,
       }}>
+      {/* <GlobalStyle /> */}
       <Routes />
     </SafeAreaView>
   );

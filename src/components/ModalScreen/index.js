@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { Button, Image, StyleSheet, Text, View } from 'react-native';
+import { Button, Image, Text, TouchableOpacity, View } from 'react-native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -8,12 +8,10 @@ const defaultImage = 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-
 
 import { NotFound } from '../../assets/NotFound.png';
 
+import styled from 'styled-components';
+
 
 const ModalScreen = (item) => {
-
-  // const bannerStyle = {
-  //   backgroundImage: `url(${item.backdrop_path ? `https://image.tmdb.org/t/p/original/${item.backdrop_path}` : "https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png"})`,
-  // }
 
   const addToFavorite = async (element) => {
 
@@ -62,28 +60,74 @@ const ModalScreen = (item) => {
   }, []);
 
   return (
-    <View>
-      <Image
+    <Container>
+      <Picture
         defaultSource={{ uri: NotFound }}
         source={{ uri: item.route.params.backdrop_path ? `https://image.tmdb.org/t/p/original${item.route.params.backdrop_path}` : defaultImage }}
-        style={styles.pictures}
         alt={item.title}
       />
-      <Text>{item && item.route.params.title || item && item.route.params.original_title}</Text>
-      <Text>{item && item.route.params.overview || 'No description for now'}</Text>
+      <Title>{item && item.route.params.title || item && item.route.params.original_title}</Title>
 
-      <Button title='Lecture' type='button' />
-      <Button title='Add' type='button' onPress={() => addToFavorite(item.route.params)} />
-    </View>
+      <PlayButton>
+        <Button title='Lecture' type='button' />
+      </PlayButton>
+
+      <Icons>
+        <IconDescription onPress={() => addToFavorite(item.route.params)}>Ma Liste</IconDescription>
+        <IconDescription>GroupWatch</IconDescription>
+        <IconDescription>Télécharger</IconDescription>
+      </Icons>
+
+
+      <Description>{item && item.route.params.overview || 'No description for now'}</Description>
+
+      {/* <Button title='Add' type='button' onPress={() => addToFavorite(item.route.params)} /> */}
+    </Container>
   );
 }
 
-const styles = StyleSheet.create({
-  pictures: {
-    width: 67,
-    height: 100
-  }
-})
+const Container = styled.View`
+  background-color: #262940;
+  height: 100%;
+`
 
+const Title = styled.Text`
+  text-align: center;
+  font-weight: 600;
+  font-size: 18px;
+  color: #F9F9F9;
+  margin: 5%;
+`
+
+const Description = styled.Text`
+  font-size: 16px;
+  color: #F9F9F9;
+  padding: 0 6% 0 6%;
+`
+
+const Icons = styled.View`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+`
+
+const IconDescription = styled.Text`
+  color: #FFFFFF;
+  margin: 8% 2% 8% 2%;
+`
+
+const Picture = styled.Image`
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  height: 40%;
+`
+
+const PlayButton = styled.TouchableOpacity`
+  background-color: white;
+  border-radius: 4px;
+  margin: 4% 6% 0 6%;
+`
 
 export default ModalScreen;

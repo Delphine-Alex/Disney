@@ -6,6 +6,9 @@ import { FlatList, Text, View } from 'react-native';
 
 import MovieCard from '../../components/MovieCard';
 
+import styled from 'styled-components';
+
+
 const Profiles = () => {
   const [movies, setMovies] = useState([]);
 
@@ -14,10 +17,10 @@ const Profiles = () => {
   }, []);
 
   return (
-    <View>
+    <Container>
       {
         movies ? (
-          <FlatList
+          <Test
             data={movies}
             keyExtractor={item => item.id}
             renderItem={({ item }) => (
@@ -28,8 +31,20 @@ const Profiles = () => {
           ""
         )
       }
-    </View>
+    </Container>
   );
 }
+
+const Container = styled.View`
+  background-color: #262940;
+  height: 100%;
+`
+
+const Test = styled.FlatList`
+  /* border: 2px solid red; */
+  display : flex;
+  /* flex-wrap: wrap;
+  justify-content: space-between; */
+`
 
 export default Profiles;

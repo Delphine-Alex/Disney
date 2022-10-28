@@ -5,6 +5,23 @@ import { Button, FlatList, Text, View } from 'react-native';
 
 import MovieCard from '../MovieCard';
 
+import styled from 'styled-components';
+
+const Test = styled.View`
+  padding: 3.75%;
+`
+
+const Test2 = styled.Text`
+  color: red;
+`
+// const Test3 = styled.FlatList`
+//   display: flex;
+//   align-items: center;
+//   overflow-x: visible;
+//   overflow-y: hidden;
+//   width: 100%;
+// `
+
 const Row = (props) => {
   const [movies, setMovies] = useState([]);
 
@@ -46,8 +63,8 @@ const Row = (props) => {
   }, []);
 
   return (
-    <View>
-      <Text>{props.title}</Text>
+    <Test>
+      <Test2>{props.title}</Test2>
       <FlatList
         data={movies}
         keyExtractor={item => item.id}
@@ -55,7 +72,7 @@ const Row = (props) => {
           <MovieCard {...item} />
         )}
       />
-    </View>
+    </Test>
   );
 }
 
