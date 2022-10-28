@@ -61,7 +61,7 @@ const Search = () => {
         </SearchInput>
 
         <ScrollView>
-          {movies.map((item) => {
+          {movies.map((item, key) => {
             return (
               <SearchContent>
 

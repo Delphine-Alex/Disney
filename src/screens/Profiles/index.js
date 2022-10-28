@@ -24,9 +24,9 @@ const Profiles = () => {
       <ScrollView>
         <Title>Mes films et séries</Title>
         {favorites ?
-          (favorites.map((item) => {
+          (favorites.map((item, key) => {
             return (
-              <MovieCard {...item} />
+              <MovieCard {...item} key={item.id} />
             )
           })
           ) : (

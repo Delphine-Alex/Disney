@@ -52,7 +52,7 @@ const Row = (props) => {
     <Container>
       <Title>{props.title}</Title>
       <ScrollView horizontal={true}>
-        {movies.map((item) => {
+        {movies.map((item, key) => {
           return (
             <MovieCard {...item} key={item.id} />
           )

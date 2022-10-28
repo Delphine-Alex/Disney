@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-import { Button, Text, View } from 'react-native';
+import { Button, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+
+import { WebView } from 'react-native-webview';
 
 import styled from 'styled-components';
 
@@ -18,6 +20,7 @@ const Video = ({ route }) => {
       try {
         const result = await axios.get(`${apiUrl}/movie/${route.params.id}/videos?api_key=${apiKey}`)
         setVideo(result.data.results[0]);
+        console.log('result', result.data.results[0])
       } catch (error) {
         console.log(error)
       }
@@ -27,14 +30,16 @@ const Video = ({ route }) => {
 
   return (
     <Container>
-      <Button title="X" onPress={() => navigation.navigate('Home')} />
-      <Title>Titre</Title>
-      {/* <iframe 
-        src={`http://www.youtube.com/embed/${video.key}`} 
+      <BackButton>
+        <Button title="X" onPress={() => navigation.navigate('Home')} />
+      </BackButton>
+      <WebView
+        source={{ uri: `https://www.youtube.com/embed/${video.key}` }}
         title='YouTube video player'
+        allowsFullscreenVideo
       >
-      </iframe> */}
-    </Container>
+      </WebView>
+    </Container >
   );
 }
 
@@ -43,9 +48,18 @@ const Container = styled.View`
   height: 100%;
 `
 
+const BackButton = styled.TouchableOpacity`
+  background-color: black;
+  width: 12%;
+`
+
 const Title = styled.Text`
   font-weight: 600;
   color: white;
 `
+
+// const Iframe = styled.WebView`
+
+// `
 
 export default Video;
