@@ -7,20 +7,6 @@ import MovieCard from '../MovieCard';
 
 import styled from 'styled-components';
 
-const Test = styled.View`
-  padding: 3.75%;
-`
-
-const Test2 = styled.Text`
-  color: red;
-`
-// const Test3 = styled.FlatList`
-//   display: flex;
-//   align-items: center;
-//   overflow-x: visible;
-//   overflow-y: hidden;
-//   width: 100%;
-// `
 
 const Row = (props) => {
   const [movies, setMovies] = useState([]);
@@ -34,6 +20,7 @@ const Row = (props) => {
         try {
           const result = await axios.get(`${apiUrl}/movie/popular?api_key=${apiKey}`)
           setMovies(result.data.results);
+          console.log('Popular', result.data.results)
         } catch (error) {
           console.log(error)
         }
@@ -44,6 +31,7 @@ const Row = (props) => {
         try {
           const result = await axios.get(`${apiUrl}/discover/movie?api_key=${apiKey}&with_genres=28,12`)
           setMovies(result.data.results);
+          console.log('Action and adventure', result.data.results)
         } catch (error) {
           console.log(error)
         }
@@ -54,6 +42,7 @@ const Row = (props) => {
         try {
           const result = await axios.get(`${apiUrl}/discover/movie?api_key=${apiKey}&with_genres=27`)
           setMovies(result.data.results);
+          console.log('Horror', result.data.results)
         } catch (error) {
           console.log(error)
         }
@@ -63,17 +52,38 @@ const Row = (props) => {
   }, []);
 
   return (
-    <Test>
-      <Test2>{props.title}</Test2>
-      <FlatList
+    <Container>
+      <Title>{props.title}</Title>
+      <Test3
         data={movies}
         keyExtractor={item => item.id}
         renderItem={({ item }) => (
           <MovieCard {...item} />
         )}
       />
-    </Test>
+    </Container>
   );
 }
+
+const Container = styled.View`
+  padding: 6%;
+`
+
+const Title = styled.Text`
+  margin-bottom: 2%;
+  font-weight: 600;
+  font-size: 16px;
+  color: #C6C6C6;
+`
+const Test3 = styled.FlatList`
+  /* flex-Grow: 1;
+  justify-content: 'center' */
+  /* flex: 1; */
+  /* border: 2px solid purple; */
+  /* align-items: center;
+  overflow-x: visible;
+  overflow-y: hidden;
+  width: 100%; */
+`
 
 export default Row;

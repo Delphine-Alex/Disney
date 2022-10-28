@@ -8,6 +8,7 @@ import Row from '../../components/Row';
 import { LogoDisney } from '../../assets/LogoDisney.png'
 
 import styled from 'styled-components';
+import { ScrollView } from 'react-native-gesture-handler';
 
 
 const Home = () => {
@@ -15,10 +16,12 @@ const Home = () => {
 
   return (
     <Container>
-      <Logo source={LogoDisney} alt='Logo Disney +' />
-      <Row title="Tendances" />
-      <Row title="Action et Aventure" />
-      <Row title="Horreur" />
+      <ScrollView>
+        <Logo source={LogoDisney} alt='Logo Disney +' />
+        <Row title="Tendances" />
+        <Row title="Action et Aventure" />
+        <Row title="Horreur" />
+      </ScrollView>
     </Container>
   );
 }
