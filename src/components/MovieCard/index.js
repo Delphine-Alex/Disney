@@ -7,6 +7,8 @@ import { NotFound } from '../../assets/NotFound.png';
 
 const defaultImage = 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png'
 
+import styled from 'styled-components';
+
 
 const MovieCard = (item) => {
   const navigation = useNavigation();
@@ -14,10 +16,9 @@ const MovieCard = (item) => {
   return (
     <View>
       <TouchableOpacity onPress={() => navigation.navigate('ModalScreen', { ...item })}>
-        <Image
+        <Picture
           defaultSource={{ uri: NotFound }}
           source={{ uri: item.backdrop_path ? `https://image.tmdb.org/t/p/original${item.backdrop_path}` : defaultImage }}
-          style={styles.pictures}
           alt={item.title}
         />
       </TouchableOpacity>
@@ -25,11 +26,11 @@ const MovieCard = (item) => {
   );
 }
 
-const styles = StyleSheet.create({
-  pictures: {
-    width: 67,
-    height: 100
-  }
-})
+const Picture = styled.Image`
+  border-radius: 4px;
+  height: 67px;
+  width: 100px;
+`
+
 
 export default MovieCard;

@@ -7,6 +7,8 @@ import { Button, Image, TextInput, FlatList, Text, TouchableOpacity, View } from
 
 import { NotFound } from '../../assets/NotFound.png';
 
+import MovieCard from '../../components/MovieCard';
+
 const defaultImage = 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png'
 
 import styled from 'styled-components';
@@ -64,12 +66,10 @@ const Search = () => {
           data={movies}
           keyExtractor={item => item.id}
           renderItem={({ item }) => (
-            <SearchContent onPress={() => navigation.navigate('ModalScreen', { ...item })}>
-              <Picture
-                defaultSource={{ uri: NotFound }}
-                source={{ uri: item.backdrop_path ? `https://image.tmdb.org/t/p/original${item.backdrop_path}` : defaultImage }}
-                alt={item.title}
-              />
+            <SearchContent>
+
+              <MovieCard {...item} />
+
               <SearchDescription>
                 <Title>{item.title}</Title>
                 <Date>{item.release_date}</Date>
@@ -118,12 +118,6 @@ const SearchContent = styled.View`
 `
 const SearchDescription = styled.View`
   margin: 2% 6% 0 4%;
-`
-
-const Picture = styled.Image`
-  border-radius: 4px;
-  height: 68px;
-  width: 34%;
 `
 
 const Title = styled.Text`
