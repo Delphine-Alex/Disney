@@ -12,7 +12,7 @@ const Row = (props) => {
   const [movies, setMovies] = useState([]);
 
   const apiUrl = 'https://api.themoviedb.org/3';
-  const apiKey = 'fd7bff04ac1e8d64d6c38c9200b46fb8'
+  const apiKey = 'fd7bff04ac1e8d64d6c38c9200b46fb8';
 
   useEffect(() => {
     if (props.title === "Tendances") {
@@ -20,7 +20,6 @@ const Row = (props) => {
         try {
           const result = await axios.get(`${apiUrl}/movie/popular?api_key=${apiKey}`)
           setMovies(result.data.results);
-          console.log('Popular', result.data.results)
         } catch (error) {
           console.log(error)
         }
@@ -31,7 +30,6 @@ const Row = (props) => {
         try {
           const result = await axios.get(`${apiUrl}/discover/movie?api_key=${apiKey}&with_genres=28,12`)
           setMovies(result.data.results);
-          console.log('Action and adventure', result.data.results)
         } catch (error) {
           console.log(error)
         }
@@ -42,7 +40,6 @@ const Row = (props) => {
         try {
           const result = await axios.get(`${apiUrl}/discover/movie?api_key=${apiKey}&with_genres=27`)
           setMovies(result.data.results);
-          console.log('Horror', result.data.results)
         } catch (error) {
           console.log(error)
         }
@@ -57,7 +54,7 @@ const Row = (props) => {
       <ScrollView horizontal={true}>
         {movies.map((item) => {
           return (
-            <MovieCard {...item} />
+            <MovieCard {...item} key={item.id} />
           )
         })}
       </ScrollView>

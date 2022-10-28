@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 import { Button, Image, Text, TouchableOpacity, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -12,6 +13,11 @@ import styled from 'styled-components';
 
 
 const ModalScreen = (item) => {
+
+  console.log(item.route.params.id);
+  console.log('item', item.route.params);
+
+  const navigation = useNavigation();
 
   const addToFavorite = async (element) => {
 
@@ -32,10 +38,10 @@ const ModalScreen = (item) => {
 
       const checkId = movieArray.findIndex((el) => el.id === element.id);
       if (checkId === -1) {
-        console.log('le film n existe pas');
+        console.log('Film ajouté à la liste des favoris');
         movieArray.push(movieToInsert)
       } else {
-        console.log('le film existe');
+        console.log('Film retiré de la liste des favoris');
         movieArray.splice(checkId, 1)
       }
       await AsyncStorage.setItem('favorite', JSON.stringify(movieArray));
@@ -47,18 +53,6 @@ const ModalScreen = (item) => {
     }
   }
 
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const storage = JSON.parse(await AsyncStorage.getItem('favorite'));
-        console.log('favorite is:', storage)
-      } catch (error) {
-        console.log('error:', error)
-      }
-    }
-    getData();
-  }, []);
-
   return (
     <Container>
       <Picture
@@ -69,7 +63,7 @@ const ModalScreen = (item) => {
       <Title>{item && item.route.params.title || item && item.route.params.original_title}</Title>
 
       <PlayButton>
-        <Button title='Lecture' type='button' />
+        <Button title='Lecture' type='button' onPress={() => navigation.navigate('Video', { id: item.route.params.id })} />
       </PlayButton>
 
       <Icons>
@@ -78,10 +72,7 @@ const ModalScreen = (item) => {
         <IconDescription>Télécharger</IconDescription>
       </Icons>
 
-
       <Description>{item && item.route.params.overview || 'No description for now'}</Description>
-
-      {/* <Button title='Add' type='button' onPress={() => addToFavorite(item.route.params)} /> */}
     </Container>
   );
 }

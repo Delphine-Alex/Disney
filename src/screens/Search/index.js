@@ -30,7 +30,6 @@ const Search = () => {
       try {
         const result = await axios.get(`${apiUrl}/search/movie?api_key=${apiKey}&query=` + searchTerm)
         setMovies(result.data.results);
-        console.log(result.data.results);
         setSearchTerm('');
       } catch (error) {
         console.log(error)
@@ -66,7 +65,7 @@ const Search = () => {
             return (
               <SearchContent>
 
-                <MovieCard {...item} />
+                <MovieCard {...item} key={item.id} />
 
                 <SearchDescription>
                   <Title>{item.title}</Title>
