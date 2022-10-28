@@ -27,6 +27,7 @@ const MovieCard = (item) => {
 }
 
 const Picture = styled.Image`
+  margin-right: 8px;
   border-radius: 4px;
   height: 67px;
   width: 100px;

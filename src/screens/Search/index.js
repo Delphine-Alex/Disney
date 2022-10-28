@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import { useNavigation } from '@react-navigation/native';
 
-import { Button, Image, TextInput, FlatList, Text, TouchableOpacity, View } from 'react-native';
+import { Button, Image, TextInput, FlatList, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 
 import { NotFound } from '../../assets/NotFound.png';
 
@@ -12,7 +12,6 @@ import MovieCard from '../../components/MovieCard';
 const defaultImage = 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png'
 
 import styled from 'styled-components';
-
 
 
 const Search = () => {
@@ -46,38 +45,38 @@ const Search = () => {
 
   return (
     <Container>
+      <ScrollView>
 
-      <SearchInput>
-        <Input
-          name='Search'
-          id='search'
-          type='text'
-          secureTextEntry={false}
-          placeholder="Titre, personnage ou genre"
-          onChangeText={handleOnChange}
-        />
-        <SearchButton>
-          <Button title='Search' type='submit' onPress={handleSubmit} />
-        </SearchButton>
-      </SearchInput>
+        <SearchInput>
+          <Input
+            name='Search'
+            id='search'
+            type='text'
+            secureTextEntry={false}
+            placeholder="Titre, personnage ou genre"
+            onChangeText={handleOnChange}
+          />
+          <SearchButton>
+            <Button title='Search' type='submit' onPress={handleSubmit} />
+          </SearchButton>
+        </SearchInput>
 
-      <View>
-        <FlatList
-          data={movies}
-          keyExtractor={item => item.id}
-          renderItem={({ item }) => (
-            <SearchContent>
+        <ScrollView>
+          {movies.map((item) => {
+            return (
+              <SearchContent>
 
-              <MovieCard {...item} />
+                <MovieCard {...item} />
 
-              <SearchDescription>
-                <Title>{item.title}</Title>
-                <Date>{item.release_date}</Date>
-              </SearchDescription>
-            </SearchContent>
-          )}
-        />
-      </View>
+                <SearchDescription>
+                  <Title>{item.title}</Title>
+                  <Date>{item.release_date}</Date>
+                </SearchDescription>
+              </SearchContent>
+            )
+          })}
+        </ScrollView>
+      </ScrollView>
     </Container>
   );
 }
@@ -114,10 +113,10 @@ const SearchContent = styled.View`
   display: flex;
   flex-direction: row;
   padding: 1% 6% 1% 6%;
-  /* border: 2px solid red; */
 `
+
 const SearchDescription = styled.View`
-  margin: 2% 6% 0 4%;
+  margin: 2% 6% 0 2%;
 `
 
 const Title = styled.Text`

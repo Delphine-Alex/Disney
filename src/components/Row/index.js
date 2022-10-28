@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-import { Button, FlatList, Text, View } from 'react-native';
+import { Button, FlatList, ScrollView, Text, View } from 'react-native';
 
 import MovieCard from '../MovieCard';
 
@@ -54,13 +54,13 @@ const Row = (props) => {
   return (
     <Container>
       <Title>{props.title}</Title>
-      <Test3
-        data={movies}
-        keyExtractor={item => item.id}
-        renderItem={({ item }) => (
-          <MovieCard {...item} />
-        )}
-      />
+      <ScrollView horizontal={true}>
+        {movies.map((item) => {
+          return (
+            <MovieCard {...item} />
+          )
+        })}
+      </ScrollView>
     </Container>
   );
 }
@@ -75,15 +75,6 @@ const Title = styled.Text`
   font-size: 16px;
   color: #C6C6C6;
 `
-const Test3 = styled.FlatList`
-  /* flex-Grow: 1;
-  justify-content: 'center' */
-  /* flex: 1; */
-  /* border: 2px solid purple; */
-  /* align-items: center;
-  overflow-x: visible;
-  overflow-y: hidden;
-  width: 100%; */
-`
+
 
 export default Row;
