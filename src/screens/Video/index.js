@@ -16,10 +16,8 @@ const Video = ({ route }) => {
   useEffect(() => {
     const getVideo = async () => {
       try {
-        const result = await axios.get(`${apiUrl}/movie/${route.params.id}?api_key=${apiKey}`)
-        // console.log('video id', route.params.id);
-        setVideo(result);
-        console.log('Video', result)
+        const result = await axios.get(`${apiUrl}/movie/${route.params.id}/videos?api_key=${apiKey}`)
+        setVideo(result.data.results[0]);
       } catch (error) {
         console.log(error)
       }

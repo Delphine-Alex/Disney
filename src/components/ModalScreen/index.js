@@ -14,9 +14,6 @@ import styled from 'styled-components';
 
 const ModalScreen = (item) => {
 
-  console.log(item.route.params.id);
-  console.log('item', item.route.params);
-
   const navigation = useNavigation();
 
   const addToFavorite = async (element) => {
