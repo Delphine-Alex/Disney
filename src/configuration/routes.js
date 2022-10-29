@@ -16,10 +16,14 @@ const Routes = () => {
 
   return (
     <NavigationContainer>
-      <RootStack.Navigator>
+      <RootStack.Navigator screenOptions={{ headerShown: false }}>
         <RootStack.Screen name="BottomNavigator" component={BottomNavigator} />
         <RootStack.Screen name="Video" component={Video} />
-        <RootStack.Group screenOptions={{ presentation: 'modal' }}>
+        <RootStack.Group
+          screenOptions={{
+            presentation: 'modal',
+            // headerShown: true
+          }}>
           <RootStack.Screen name="ModalScreen" component={ModalScreen} />
         </RootStack.Group>
       </RootStack.Navigator>

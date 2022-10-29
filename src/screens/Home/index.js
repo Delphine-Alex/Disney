@@ -18,9 +18,10 @@ const Home = () => {
       <LogoContainer>
         <Logo source={LogoDisney} alt='Logo Disney +' />
       </LogoContainer>
-      <Row title="Tendances" />
-      <Row title="Action et Aventure" />
-      <Row title="Horreur" />
+      <Row title='Prochainement sur Disney +' />
+      <Row title='Tendances' />
+      <Row title='Action et Aventure' />
+      <Row title='Horreur' />
     </Container>
   );
 }

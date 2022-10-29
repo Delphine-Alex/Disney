@@ -35,6 +35,16 @@ const Row = (props) => {
         }
       }
       getMovies();
+    } else if (props.title === "Prochainement sur Disney +") {
+      const getMovies = async () => {
+        try {
+          const result = await axios.get(`${apiUrl}/movie/upcoming?api_key=${apiKey}`)
+          setMovies(result.data.results);
+        } catch (error) {
+          console.log(error)
+        }
+      }
+      getMovies();
     } else {
       const getMovies = async () => {
         try {
@@ -63,7 +73,7 @@ const Row = (props) => {
 }
 
 const Container = styled.View`
-  padding: 6%;
+  padding: 6% 6% 2.5% 6%;
 `
 
 const Title = styled.Text`

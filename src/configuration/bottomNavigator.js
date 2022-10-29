@@ -10,11 +10,7 @@ const BottomNavigator = () => {
   const BottomStack = createMaterialBottomTabNavigator();
 
   return (
-    <BottomStack.Navigator
-      screenOptions={{
-        headerShown: false,
-      }}
-    >
+    <BottomStack.Navigator>
       <BottomStack.Screen name="Home" component={Home} />
       <BottomStack.Screen name="Search" component={Search} />
       <BottomStack.Screen name="Favorite" component={Favorite} />

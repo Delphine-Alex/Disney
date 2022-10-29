@@ -62,9 +62,9 @@ const Search = () => {
         <ScrollView>
           {movies.map((item, key) => {
             return (
-              <SearchContent>
+              <SearchContent key={item.id}>
 
-                <MovieCard {...item} key={item.id} />
+                <MovieCard {...item} />
 
                 <SearchDescription>
                   <Title>{item.title}</Title>
