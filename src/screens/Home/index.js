@@ -26,7 +26,7 @@ const Home = () => {
 }
 
 const Container = styled.View`
-  background-color: #262940;
+  background-color: ${props => props.theme.backgroundColor};
   height: 100%;
 `
 

@@ -5,16 +5,17 @@ import { useNavigation } from '@react-navigation/native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const defaultImage = 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png'
+import getFavorite from '../../utils/getFavorite';
 
 import { NotFound } from '../../assets/NotFound.png';
 
-import getFavorite from '../../utils/getFavorite';
+const defaultImage = 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png'
 
 import styled from 'styled-components';
 
 import Add from 'react-native-vector-icons/Ionicons';
 import Group from 'react-native-vector-icons/MaterialCommunityIcons';
+
 
 const ModalScreen = (item) => {
   const navigation = useNavigation();
@@ -33,6 +34,10 @@ const ModalScreen = (item) => {
       localFavorite.splice(index, 1);
       await AsyncStorage.setItem('favorite', JSON.stringify(localFavorite));
     }
+  };
+
+  const truncate = (string) => {
+    return string?.length > 150 ? `${string.substring(0, 200)}...` : string
   };
 
   return (
@@ -59,13 +64,13 @@ const ModalScreen = (item) => {
         </Icon>
       </Icons>
 
-      <Description>{item && item.route.params.overview || 'No description for now'}</Description>
+      <Description>{truncate(item && item.route.params.overview) || 'No description for now'}</Description>
     </Container>
   );
 }
 
 const Container = styled.View`
-  background-color: #262940;
+  background-color: ${props => props.theme.backgroundColor}
   height: 100%;
 `
 
@@ -73,13 +78,13 @@ const Title = styled.Text`
   text-align: center;
   font-weight: 600;
   font-size: 18px;
-  color: #F9F9F9;
+  color: ${props => props.theme.ligthGreyColor}
   margin: 5%;
 `
 
 const Description = styled.Text`
+  color: ${props => props.theme.ligthGreyColor}
   font-size: 16px;
-  color: #F9F9F9;
   padding: 0 6% 0 6%;
 `
 
@@ -99,7 +104,7 @@ const Icon = styled.View`
 `
 
 const IconDescription = styled.Text`
-  color: #FFFFFF;
+  color: ${props => props.theme.ligthGreyColor}
   margin: 8% 2% 8% 2%;
 `
 
@@ -111,7 +116,7 @@ const Picture = styled.Image`
 `
 
 const PlayButton = styled.TouchableOpacity`
-  background-color: white;
+  background-color: ${props => props.theme.ligthGreyColor}
   border-radius: 4px;
   margin: 4% 6% 0 6%;
 `

@@ -67,10 +67,10 @@ const Container = styled.View`
 `
 
 const Title = styled.Text`
+  color: ${props => props.theme.ligthGreyColor}
   margin-bottom: 2%;
   font-weight: 600;
   font-size: 16px;
-  color: #C6C6C6;
 `
 
 

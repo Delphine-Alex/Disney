@@ -5,21 +5,14 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { FlatList, ScrollView, Text, View } from 'react-native';
 
-import MovieCard from '../../components/MovieCard';
 import getFavorite from '../../utils/getFavorite';
+import MovieCard from '../../components/MovieCard';
 
 import styled from 'styled-components';
 
 
 const Favorite = () => {
   const [favorites, setFavorites] = useState([]);
-
-  // useFocusEffect(() => {
-  //   const getFavorites = async () => {
-  //     setFavorites(JSON.parse(await AsyncStorage.getItem('favorite')) || []);
-  //   }
-  //   getFavorites();
-  // }, []);
 
   useFocusEffect(() => {
     const getLocalFavorite = async () => {
@@ -51,21 +44,21 @@ const Favorite = () => {
 }
 
 const Container = styled.View`
-  background-color: #262940;
+  background-color: ${props => props.theme.backgroundColor};
   padding: 6%;
   height: 100%;
 `
 
 const Title = styled.Text`
+  color: ${props => props.theme.ligthGreyColor};
   margin-bottom: 2%;
   font-weight: 600;
   font-size: 16px;
-  color: #C6C6C6;
 `
 
 const Content = styled.View`
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   flex-direction: row;
   flex-wrap: wrap;
   margin: 2.5%;

@@ -3,7 +3,6 @@ import axios from 'axios';
 
 import { Button, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-
 import { WebView } from 'react-native-webview';
 
 import styled from 'styled-components';
@@ -45,22 +44,13 @@ const Video = ({ route }) => {
 }
 
 const Container = styled.View`
-  background-color: black;
+  background-color: ${props => props.theme.secondaryColor};
   height: 100%;
 `
 
 const BackButton = styled.TouchableOpacity`
-  background-color: black;
+  background-color: ${props => props.theme.secondaryColor};
   width: 12%;
 `
-
-const Title = styled.Text`
-  font-weight: 600;
-  color: white;
-`
-
-// const Iframe = styled.WebView`
-
-// `
 
 export default Video;

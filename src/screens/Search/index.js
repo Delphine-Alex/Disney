@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
+import { Button, Image, TextInput, FlatList, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-import { Button, Image, TextInput, FlatList, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import MovieCard from '../../components/MovieCard';
 
 import { NotFound } from '../../assets/NotFound.png';
-
-import MovieCard from '../../components/MovieCard';
 
 const defaultImage = 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png'
 
@@ -81,7 +80,7 @@ const Search = () => {
 }
 
 const Container = styled.View`
-  background-color: #262940;
+  background-color: ${props => props.theme.backgroundColor};
   height: 100%;
 `
 
@@ -94,7 +93,7 @@ const SearchInput = styled.View`
 `
 
 const Input = styled.TextInput`
-  background-color: white;
+  background-color: ${props => props.theme.primaryColor};
   border-radius: 4px;
   margin-right: 10px;
   height: 34px;
@@ -103,7 +102,7 @@ const Input = styled.TextInput`
 `
 
 const SearchButton = styled.TouchableOpacity`
-  background-color: white;
+  background-color: ${props => props.theme.primaryColor};
   border-radius: 4px;
   height: 34px;
 `
@@ -119,16 +118,15 @@ const SearchDescription = styled.View`
 `
 
 const Title = styled.Text`
-/* white-space: nowrap; */
+  color: ${props => props.theme.primaryColor};
   font-weight: 600;
   font-size: 14px;
-  color: white;
 `
 
 const Date = styled.Text`
   margin-top: 4%;
   font-size: 10px;
-  color: #C6C6C6;
+  color: ${props => props.theme.ligthGreyColor};
 `
 
 export default Search;
