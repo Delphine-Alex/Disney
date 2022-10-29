@@ -4,7 +4,7 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 
 import Home from '../screens/Home';
 import Search from '../screens/Search';
-import Profiles from '../screens/Profiles';
+import Favorite from '../screens/Favorite';
 
 const BottomNavigator = () => {
   const BottomStack = createMaterialBottomTabNavigator();
@@ -17,7 +17,7 @@ const BottomNavigator = () => {
     >
       <BottomStack.Screen name="Home" component={Home} />
       <BottomStack.Screen name="Search" component={Search} />
-      <BottomStack.Screen name="Profiles" component={Profiles} />
+      <BottomStack.Screen name="Favorite" component={Favorite} />
     </BottomStack.Navigator>
   )
 }

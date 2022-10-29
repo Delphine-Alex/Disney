@@ -9,46 +9,31 @@ const defaultImage = 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-
 
 import { NotFound } from '../../assets/NotFound.png';
 
+import getFavorite from '../../utils/getFavorite';
+
 import styled from 'styled-components';
 
+import Add from 'react-native-vector-icons/Ionicons';
+import Group from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const ModalScreen = (item) => {
-
   const navigation = useNavigation();
 
-  const addToFavorite = async (element) => {
+  const isInFavorite = async element => { };
 
-    const movieToInsert = {
-      id: element.id,
-      title: element.title,
-      overview: element.overview,
-      backdrop_path: element.backdrop_path,
+  const addToFavorite = async element => {
+    const localFavorite = await getFavorite();
+
+    const index = localFavorite.findIndex(item => item.id === element.id);
+
+    if (index === -1) {
+      localFavorite.push(element);
+      await AsyncStorage.setItem('favorite', JSON.stringify(localFavorite));
+    } else {
+      localFavorite.splice(index, 1);
+      await AsyncStorage.setItem('favorite', JSON.stringify(localFavorite));
     }
-
-    const movieArray = [];
-
-    if (await AsyncStorage.getItem('favorite')) {
-      const localStorageFavorite = JSON.parse(await AsyncStorage.getItem('favorite'));
-      localStorageFavorite.forEach((item) => {
-        movieArray.push(item);
-      });
-
-      const checkId = movieArray.findIndex((el) => el.id === element.id);
-      if (checkId === -1) {
-        console.log('Film ajouté à la liste des favoris');
-        movieArray.push(movieToInsert)
-      } else {
-        console.log('Film retiré de la liste des favoris');
-        movieArray.splice(checkId, 1)
-      }
-      await AsyncStorage.setItem('favorite', JSON.stringify(movieArray));
-    }
-
-    else {
-      movieArray.push(movieToInsert)
-      await AsyncStorage.setItem('favorite', JSON.stringify(movieArray));
-    }
-  }
+  };
 
   return (
     <Container>
@@ -60,13 +45,18 @@ const ModalScreen = (item) => {
       <Title>{item && item.route.params.title || item && item.route.params.original_title}</Title>
 
       <PlayButton>
-        <Button title='Lecture' type='button' onPress={() => navigation.navigate('Video', { id: item.route.params.id })} />
+        <Button title='Lecture' type='button' onPress={() => navigation.navigate('Video', { id: item.route.params.id })} ></Button>
       </PlayButton>
 
       <Icons>
-        <IconDescription onPress={() => addToFavorite(item.route.params)}>Ma Liste</IconDescription>
-        <IconDescription>GroupWatch</IconDescription>
-        <IconDescription>Télécharger</IconDescription>
+        <Icon>
+          <Add name='add' size={30} onPress={() => addToFavorite(item.route.params)} />
+          <IconDescription onPress={() => addToFavorite(item.route.params)}>Ma Liste</IconDescription>
+        </Icon>
+        <Icon>
+          <Group name='account-group' size={30} />
+          <IconDescription>GroupWatch</IconDescription>
+        </Icon>
       </Icons>
 
       <Description>{item && item.route.params.overview || 'No description for now'}</Description>
@@ -98,6 +88,14 @@ const Icons = styled.View`
   align-items: center;
   justify-content: center;
   flex-direction: row;
+`
+
+const Icon = styled.View`
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `
 
 const IconDescription = styled.Text`

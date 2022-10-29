@@ -28,6 +28,7 @@ const MovieCard = (item) => {
 
 const Picture = styled.Image`
   margin-right: 6px;
+  margin-top: 10px;
   border-radius: 4px;
   height: 67px;
   width: 100px;

@@ -115,7 +115,7 @@ const SearchContent = styled.View`
 `
 
 const SearchDescription = styled.View`
-  margin: 2% 6% 0 2%;
+  margin: 4% 6% 0 2%;
 `
 
 const Title = styled.Text`

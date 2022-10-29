@@ -8,6 +8,8 @@ import { WebView } from 'react-native-webview';
 
 import styled from 'styled-components';
 
+import Icon from 'react-native-vector-icons/Ionicons'
+
 const Video = ({ route }) => {
   const [video, setVideo] = useState({});
   const navigation = useNavigation();
@@ -20,7 +22,6 @@ const Video = ({ route }) => {
       try {
         const result = await axios.get(`${apiUrl}/movie/${route.params.id}/videos?api_key=${apiKey}`)
         setVideo(result.data.results[0]);
-        console.log('result', result.data.results[0])
       } catch (error) {
         console.log(error)
       }
