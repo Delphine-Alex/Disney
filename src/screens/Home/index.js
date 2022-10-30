@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { Button, Image, Text, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+
+import verifyIfUserIsConnected from '../../utils/verifyIfUserIsConnected';
 
 import Row from '../../components/Row';
 
@@ -12,6 +14,10 @@ import styled from 'styled-components';
 
 const Home = () => {
   const navigation = useNavigation();
+
+  useEffect(() => {
+    verifyIfUserIsConnected(navigation);
+  }, []);
 
   return (
     <Container>

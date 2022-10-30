@@ -1,18 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+
 import { useFocusEffect } from '@react-navigation/native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
-import { FlatList, ScrollView, Text, View } from 'react-native';
+import { Button, ScrollView, Text, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 import getFavorite from '../../utils/getFavorite';
 import MovieCard from '../../components/MovieCard';
 
 import styled from 'styled-components';
 
-
 const Favorite = () => {
   const [favorites, setFavorites] = useState([]);
+  const navigation = useNavigation();
 
   useFocusEffect(() => {
     const getLocalFavorite = async () => {
@@ -25,6 +26,8 @@ const Favorite = () => {
   return (
     <Container>
       <ScrollView>
+        <Button title='X' onPress={() => navigation.navigate('Profile')} />
+        <Text>Ma liste</Text>
         <Title>Mes films et séries</Title>
         <Content>
           {favorites ?
@@ -39,7 +42,7 @@ const Favorite = () => {
           }
         </Content>
       </ScrollView>
-    </Container>
+    </Container >
   );
 }
 

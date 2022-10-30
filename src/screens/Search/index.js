@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 import { Button, Image, TextInput, FlatList, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+
+import verifyIfUserIsConnected from '../../utils/verifyIfUserIsConnected';
 
 import MovieCard from '../../components/MovieCard';
 
@@ -18,6 +20,10 @@ const Search = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
   const navigation = useNavigation();
+
+  useEffect(() => {
+    verifyIfUserIsConnected(navigation);
+  }, []);
 
   const apiUrl = "https://api.themoviedb.org/3"
   const apiKey = "fd7bff04ac1e8d64d6c38c9200b46fb8";
