@@ -95,13 +95,11 @@ const Logo = styled.Image`
 const Title = styled.Text`
   color: ${props => props.theme.ligthGreyColor};
   font-weight: 600;
-  /* line-height: 40; */
   font-size: 24px;
 `
 const SubTitle = styled.Text`
   color: ${props => props.theme.ligthGreyColor};
   margin-top: 10px;
-  /* line-height: 25; */
 `
 
 const Input = styled.TextInput`

@@ -1,17 +1,18 @@
 import React, { useEffect } from 'react';
 
-import { Avatar } from 'react-native-elements';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
+import { Avatar } from 'react-native-elements';
 import { Button, ScrollView, Text, Touchable, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import verifyIfUserIsConnected from '../../utils/verifyIfUserIsConnected';
 
-import Raiponce from '../../assets/Raiponce.jpeg';
-
 import styled from 'styled-components';
 
 import Icon from 'react-native-vector-icons/Ionicons';
+
+import Raiponce from '../../assets/Raiponce.jpeg';
 
 
 const Profile = () => {
@@ -37,21 +38,18 @@ const Profile = () => {
         />
       </Picture>
 
-      <TouchableOpacity onPress={() => navigation.navigate('Favorite')}>
-        <Content>
-          <Title>Ma liste</Title>
-          <Icon name='ios-arrow-forward-circle' size={25} />
-        </Content>
-      </TouchableOpacity>
+      <Navigation onPress={() => navigation.navigate('Favorite')}>
+        <Title>Ma liste</Title>
+        <Icon name='ios-arrow-forward-circle' size={25} />
+      </Navigation>
 
       <Diviser />
 
-      <TouchableOpacity onPress={disconnect}>
-        <Content>
-          <Title>Se déconnecter</Title>
-          <Icon name='ios-arrow-forward-circle' size={25} />
-        </Content>
-      </TouchableOpacity>
+      <Navigation onPress={disconnect}>
+        <Title>Se déconnecter</Title>
+        <Icon name='ios-arrow-forward-circle' size={25} />
+
+      </Navigation>
     </Container >
   );
 }
@@ -74,7 +72,7 @@ const Title = styled.Text`
   font-size: 16px;
 `
 
-const Content = styled.View`
+const Navigation = styled.TouchableOpacity`
   display: flex;
   flex-direction: row;
   align-items: center;

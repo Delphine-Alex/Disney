@@ -54,9 +54,9 @@ const ModalScreen = (item) => {
       </PlayButton>
 
       <Icons>
-        <Icon>
-          <Add name='add' size={30} onPress={() => addToFavorite(item.route.params)} />
-          <IconDescription onPress={() => addToFavorite(item.route.params)}>Ma Liste</IconDescription>
+        <Icon onPress={() => addToFavorite(item.route.params)}>
+          <Add name='add' size={30} />
+          <IconDescription>Ma Liste</IconDescription>
         </Icon>
         <Icon>
           <Group name='account-group' size={30} />
@@ -95,7 +95,7 @@ const Icons = styled.View`
   flex-direction: row;
 `
 
-const Icon = styled.View`
+const Icon = styled.TouchableOpacity`
   margin: 20px;
   display: flex;
   flex-direction: column;

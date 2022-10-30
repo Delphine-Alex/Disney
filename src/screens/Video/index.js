@@ -30,8 +30,8 @@ const Video = ({ route }) => {
 
   return (
     <Container>
-      <Navigation>
-        <Icon name='arrow-back-circle' size={30} onPress={() => navigation.navigate('Home')} />
+      <Navigation onPress={() => navigation.navigate('Home')}>
+        <Icon name='arrow-back-circle' size={30} />
         <Title>Home</Title>
       </Navigation>
 
@@ -50,7 +50,7 @@ const Container = styled.View`
   height: 100%;
 `
 
-const Navigation = styled.View`
+const Navigation = styled.TouchableOpacity`
   display: flex;
   flex-direction: row;
   align-items: center;
