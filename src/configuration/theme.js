@@ -5,6 +5,8 @@ const theme = {
   secondaryColor: '#000000',
   backgroundColor: '#262940',
   ligthGreyColor: '#C6C6C6',
+  greyColor: '#31343e',
+  blueColor: '#0063e5'
 
 }
 
