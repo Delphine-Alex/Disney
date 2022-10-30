@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-import { Button, TouchableOpacity } from 'react-native';
+import { Button, Text, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { WebView } from 'react-native-webview';
 
@@ -30,9 +30,11 @@ const Video = ({ route }) => {
 
   return (
     <Container>
-      <BackButton>
-        <Button title="X" onPress={() => navigation.navigate('Home')} />
-      </BackButton>
+      <Navigation>
+        <Icon name='arrow-back-circle' size={30} onPress={() => navigation.navigate('Home')} />
+        <Title>Home</Title>
+      </Navigation>
+
       <WebView
         source={{ uri: `https://www.youtube.com/embed/${video.key}` }}
         title='YouTube video player'
@@ -44,13 +46,20 @@ const Video = ({ route }) => {
 }
 
 const Container = styled.View`
-  background-color: ${props => props.theme.secondaryColor};
+  background-color: ${props => props.theme.primaryColor};
   height: 100%;
 `
 
-const BackButton = styled.TouchableOpacity`
-  background-color: ${props => props.theme.secondaryColor};
-  width: 12%;
+const Navigation = styled.View`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`
+
+const Title = styled.Text`
+  color: ${props => props.theme.secondaryColor};
+  font-weight: 600;
+  font-size: 16px;
 `
 
 export default Video;

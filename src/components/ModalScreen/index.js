@@ -78,12 +78,12 @@ const Title = styled.Text`
   text-align: center;
   font-weight: 600;
   font-size: 18px;
-  color: ${props => props.theme.ligthGreyColor}
+  color: ${props => props.theme.primaryColor}
   margin: 5%;
 `
 
 const Description = styled.Text`
-  color: ${props => props.theme.ligthGreyColor}
+  color: ${props => props.theme.primaryColor}
   font-size: 16px;
   padding: 0 6% 0 6%;
 `
@@ -104,7 +104,7 @@ const Icon = styled.View`
 `
 
 const IconDescription = styled.Text`
-  color: ${props => props.theme.ligthGreyColor}
+  color: ${props => props.theme.primaryColor}
   margin: 8% 2% 8% 2%;
 `
 
@@ -116,9 +116,10 @@ const Picture = styled.Image`
 `
 
 const PlayButton = styled.TouchableOpacity`
-  background-color: ${props => props.theme.ligthGreyColor}
+  background-color: ${props => props.theme.primaryColor};
   border-radius: 4px;
   margin: 4% 6% 0 6%;
+  padding: 4px;
 `
 
 export default ModalScreen;

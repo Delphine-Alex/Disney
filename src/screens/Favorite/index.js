@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { useFocusEffect } from '@react-navigation/native';
 
@@ -10,6 +10,8 @@ import getFavorite from '../../utils/getFavorite';
 import MovieCard from '../../components/MovieCard';
 
 import styled from 'styled-components';
+
+import Icon from 'react-native-vector-icons/Entypo';
 
 const Favorite = () => {
   const [favorites, setFavorites] = useState([]);
@@ -26,9 +28,11 @@ const Favorite = () => {
   return (
     <Container>
       <ScrollView>
-        <Button title='X' onPress={() => navigation.navigate('Profile')} />
-        <Text>Ma liste</Text>
-        <Title>Mes films et séries</Title>
+        <TitleContent>
+          <Icon name='arrow-with-circle-left' size={30} onPress={() => navigation.navigate('Profile')} />
+          <Title>Ma liste</Title>
+        </TitleContent>
+        <SubTitle>Mes films et séries</SubTitle>
         <Content>
           {favorites ?
             (favorites.map((item, key) => {
@@ -52,11 +56,25 @@ const Container = styled.View`
   height: 100%;
 `
 
+const TitleContent = styled.View`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`
+
 const Title = styled.Text`
   color: ${props => props.theme.ligthGreyColor};
-  margin-bottom: 2%;
+  margin-left: 32%;
+  font-weight: 600;
+  font-size: 20px;
+`
+
+const SubTitle = styled.Text`
+  color: ${props => props.theme.ligthGreyColor};
+  margin-top: 30px;
   font-weight: 600;
   font-size: 16px;
+  padding: 2.5%;
 `
 
 const Content = styled.View`
@@ -64,7 +82,7 @@ const Content = styled.View`
   justify-content: flex-start;
   flex-direction: row;
   flex-wrap: wrap;
-  margin: 2.5%;
+  padding: 3%;
 `
 
 export default Favorite;

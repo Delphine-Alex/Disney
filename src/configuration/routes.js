@@ -19,9 +19,9 @@ const Routes = () => {
     <NavigationContainer >
       <RootStack.Navigator screenOptions={{ headerShown: false }} initialRouteName={'Login'}>
         <RootStack.Screen name="Login" component={Login} />
+        <RootStack.Screen name="Favorite" component={Favorite} />
         <RootStack.Screen name="BottomNavigator" component={BottomNavigator} />
         <RootStack.Screen name="Video" component={Video} />
-        <RootStack.Screen name="Favorite" component={Favorite} />
         <RootStack.Group
           screenOptions={{
             presentation: 'modal',

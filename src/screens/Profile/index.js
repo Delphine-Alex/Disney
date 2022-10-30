@@ -22,8 +22,14 @@ const Profile = () => {
   };
 
   return (
-    < Container >
+    <Container>
       <Button title='Ma Liste' onPress={() => navigation.navigate('Favorite')} />
+      <View
+        style={{
+          borderBottomColor: 'black',
+          // borderBottomWidth: StyleSheet.hairlineWidth,
+        }}
+      />
       <Button title='Se déconnecter' onPress={disconnect} />
     </Container >
   );
